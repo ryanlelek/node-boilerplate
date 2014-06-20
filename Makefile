@@ -2,7 +2,7 @@
 
 .PHONY: install
 install:
-	npm install
+	./scripts/install.sh
 
 .PHONY: test
 test:
