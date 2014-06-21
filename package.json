@@ -2,11 +2,14 @@
   "name" : "node-boilerplate",
   "version" : "0.0.1",
   "repository" : "https://repo.git",
-  "dependencies" : {},
+  "dependencies" : {
+    "express" : "4.4.4"
+  },
   "devDependencies" : {
-    "mocha"  : "1.20.1",
-    "should" : "4.0.4",
-    "jshint" : "2.5.1"
+    "jshint"    : "2.5.1",
+    "mocha"     : "1.20.1",
+    "should"    : "4.0.4",
+    "supertest" : "0.13.0"
   },
   "scripts": {},
   "engines" : {
