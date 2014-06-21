@@ -11,7 +11,10 @@
     "should"    : "4.0.4",
     "supertest" : "0.13.0"
   },
-  "scripts": {},
+  "scripts": {
+    "start" : "make start",
+    "test"  : "make test"
+  },
   "engines" : {
     "node" : "0.10.x",
     "npm"  : "1.4.x"
