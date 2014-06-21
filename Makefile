@@ -4,6 +4,10 @@
 install:
 	./scripts/install.sh
 
+.PHONY: clean
+clean:
+	./scripts/clean.sh
+
 .PHONY: start
 start:
 	./scripts/start.sh
