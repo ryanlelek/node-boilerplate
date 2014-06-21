@@ -15,3 +15,11 @@ test:
 .PHONY: delint
 delint:
 	./scripts/delint.sh
+
+.PHONY: coverage
+coverage:
+	./scripts/coverage.sh
+
+.PHONY: report
+report:
+	./scripts/report.sh
