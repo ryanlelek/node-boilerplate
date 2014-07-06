@@ -89,6 +89,55 @@ describe('404 Not Found', function () {
 
 });
 
+describe('Protected Route', function () {
+
+  var correct_username   = 'bob';
+  var correct_password   = 'bobisthebest';
+  var incorrect_username = 'alice';
+  var incorrect_password = 'aliceisthebest';
+
+  it('should deny a request with an incorrect username/password', function (done) {
+    request.get('/protected')
+      .set('Accept', 'application/json')
+      .auth(incorrect_username, incorrect_password)
+      .expect('Content-Type', /json/)
+      .expect(401)
+      .expect({ error : { message : 'Authentication Failed' } })
+      .end(done);
+  });
+
+  it('should deny a request with an incorrect username', function (done) {
+    request.get('/protected')
+      .set('Accept', 'application/json')
+      .auth(incorrect_username, correct_password)
+      .expect('Content-Type', /json/)
+      .expect(401)
+      .expect({ error : { message : 'Authentication Failed' } })
+      .end(done);
+  });
+
+  it('should deny a request with an incorrect password', function (done) {
+    request.get('/protected')
+      .set('Accept', 'application/json')
+      .auth(correct_username, incorrect_password)
+      .expect('Content-Type', /json/)
+      .expect(401)
+      .expect({ error : { message : 'Authentication Failed' } })
+      .end(done);
+  });
+
+  it('should allow a request with a correct username/password', function (done) {
+    request.get('/protected')
+      .set('Accept', 'application/json')
+      .auth(correct_username, correct_password)
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .expect({ secret : 'sauce' })
+      .end(done);
+  });
+
+});
+
 describe('GET /error-next', function () {
 
   it('should respond with 500 and Next Error', function (done) {

@@ -6,6 +6,7 @@ var express         = require('express');
 var logger          = require('morgan');
 var body_parser     = require('body-parser');
 var method_override = require('method-override');
+var basic_auth      = require('basic-auth');
 
 // New Express App
 var app = express();
@@ -15,6 +16,23 @@ app.set('port', 8888);
 
 // Log Requests
 app.use(logger({ format: ':date :remote-addr :method :status :url' })); // 'dev'
+
+// HTTP Basic Auth
+// TODO: Make module of this (return true/false)
+var valid_username = 'bob';
+var valid_password = 'bobisthebest';
+function authentication_required (req, res, next) {
+  var credentials = basic_auth(req);
+  if (credentials !== undefined) {
+    if (credentials.name && credentials.name === valid_username) {
+      if (credentials.pass && credentials.pass === valid_password) {
+        return next();
+      }
+    }
+  }
+  res.set('WWW-Authenticate', 'Basic');
+  res.send(401, { error : { message : 'Authentication Failed' } });
+}
 
 // Accept Method Overrides
 // in order to be compatible
@@ -50,6 +68,11 @@ app.get('/error-next', function (req, res, next) {
 });
 app.get('/error-throw', function (req, res, next) {
   throw new Error('Throw Error');
+});
+
+// Protected Route
+app.get('/protected', authentication_required, function (req, res, next) {
+  res.send(200, { secret : 'sauce' });
 });
 
 // ### Handle Errors ###
