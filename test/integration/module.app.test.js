@@ -24,3 +24,19 @@ describe('GET /', function () {
   });
 
 });
+
+describe('POST /', function () {
+
+  it('should respond with 200', function (done) {
+
+    request.post('/')
+      .set('Accept', 'application/json')
+      .send({ data : 'test' })
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .expect({ data : 'test', processed : true })
+      .end(done);
+
+  });
+
+});
