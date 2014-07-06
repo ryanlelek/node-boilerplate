@@ -13,14 +13,12 @@ var request = supertest(app);
 describe('GET /', function () {
 
   it('should respond with 200', function (done) {
-
     request.get('/')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
       .expect({ hello : 'goodbye' })
       .end(done);
-
   });
 
 });
@@ -28,7 +26,6 @@ describe('GET /', function () {
 describe('POST /', function () {
 
   it('should respond with 200', function (done) {
-
     request.post('/')
       .set('Accept', 'application/json')
       .send({ data : 'test' })
@@ -36,12 +33,12 @@ describe('POST /', function () {
       .expect(200)
       .expect({ data : 'test', processed : true })
       .end(done);
-
   });
 
 });
 
 describe('GET /error-next', function () {
+
   it('should respond with 500 and Next Error', function (done) {
     request.get('/error-next')
       .set('Accept', 'application/json')
@@ -50,9 +47,11 @@ describe('GET /error-next', function () {
       .expect({ error : { name : 'Error', message : 'Next Error' } })
       .end(done);
   });
+
 });
 
 describe('GET /error-throw', function () {
+
   it('should respond with 500 and Throw Error', function (done) {
     request.get('/error-throw')
       .set('Accept', 'application/json')
@@ -61,4 +60,5 @@ describe('GET /error-throw', function () {
       .expect({ error : { name : 'Error', message : 'Throw Error' } })
       .end(done);
   });
+
 });
