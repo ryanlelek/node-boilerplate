@@ -2,9 +2,10 @@
 'use strict';
 
 // Modules
-var express     = require('express');
-var logger      = require('morgan');
-var body_parser = require('body-parser');
+var express         = require('express');
+var logger          = require('morgan');
+var body_parser     = require('body-parser');
+var method_override = require('method-override');
 
 // New Express App
 var app = express();
@@ -14,6 +15,11 @@ app.set('port', 6789);
 
 // Log Requests
 app.use(logger({ format: ':date :remote-addr :method :status :url' })); // 'dev'
+
+// Accept Method Overrides
+// in order to be compatible
+// with limited clients/browsers
+app.use(method_override('_method'));
 
 // Parse POST/PUT Body
 app.use(body_parser.json());
@@ -31,6 +37,11 @@ app.post('/', function (req, res, next) {
   // Return POST body (from JSON)
   req.body.processed = true;
   res.send(200, req.body);
+});
+
+// DELETE Request (for Method Override test)
+app.delete('/', function (req, res, next) {
+  res.send(200, { deleted : true });
 });
 
 // Error Examples

@@ -37,6 +37,35 @@ describe('POST /', function () {
 
 });
 
+describe('DELETE /', function () {
+
+  it('should respond with 200', function (done) {
+    request.del('/')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .expect({ deleted : true })
+      .end(done);
+  });
+
+});
+
+// Waiting for help from author on issue
+// https://github.com/expressjs/method-override/issues/7
+xdescribe('Method Override', function () {
+
+  // POST / (same as above) with override
+  it('should respond with 200 and { deleted : true }', function (done) {
+    request.post('/?_method=DELETE')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .expect({ deleted : true })
+      .end(done);
+  });
+
+});
+
 describe('GET /error-next', function () {
 
   it('should respond with 500 and Next Error', function (done) {
