@@ -96,6 +96,15 @@ describe('Protected Route', function () {
   var incorrect_username = 'alice';
   var incorrect_password = 'aliceisthebest';
 
+  it('should deny a request without credentials', function (done) {
+    request.get('/protected')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(401)
+      .expect({ error : { message : 'Authentication Failed' } })
+      .end(done);
+  });
+
   it('should deny a request with an incorrect username/password', function (done) {
     request.get('/protected')
       .set('Accept', 'application/json')
