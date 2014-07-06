@@ -50,9 +50,7 @@ describe('DELETE /', function () {
 
 });
 
-// Waiting for help from author on issue
-// https://github.com/expressjs/method-override/issues/7
-xdescribe('Method Override', function () {
+describe('Method Override', function () {
 
   // POST / (same as above) with override
   it('should respond with 200 and { deleted : true }', function (done) {
