@@ -54,6 +54,16 @@ app.get('/error-throw', function (req, res, next) {
 
 // ### Handle Errors ###
 
+// No Route Found
+// Second to last route (non-error catchall)
+// Do not call next(), just respond
+app.use(function (req, res, next) {
+  res.send(404, {
+    path      : req.path,
+    method    : req.method
+  });
+});
+
 // Always keep this as the last middleware
 // It uses 4 arguments to signify it is an error handler
 app.use(function (error, req, res, next) {

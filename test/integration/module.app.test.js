@@ -66,6 +66,29 @@ xdescribe('Method Override', function () {
 
 });
 
+describe('404 Not Found', function () {
+
+  it('should respond with 404 and the path/method', function (done) {
+    request.get('/does-not-exist')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(404)
+      .expect({ path : '/does-not-exist', method : 'GET' })
+      .end(done);
+  });
+
+  // Should not return query strings
+  it('should respond with 404 and the path/method', function (done) {
+    request.post('/lost-in-space?query=string&stuff=things')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(404)
+      .expect({ path : '/lost-in-space', method : 'POST' })
+      .end(done);
+  });
+
+});
+
 describe('GET /error-next', function () {
 
   it('should respond with 500 and Next Error', function (done) {
