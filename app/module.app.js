@@ -3,12 +3,16 @@
 
 // Modules
 var express = require('express');
+var logger  = require('morgan');
 
 // New Express App
 var app = express();
 
-// Configure App
+// Set Port
 app.set('port', 6789);
+
+// Log Requests
+app.use(logger({ format: ':date :remote-addr :method :status :url' })); // 'dev'
 
 // Routes
 app.get('/', function (req, res, next) {
