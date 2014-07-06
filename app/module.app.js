@@ -11,7 +11,7 @@ var method_override = require('method-override');
 var app = express();
 
 // Set Port
-app.set('port', 6789);
+app.set('port', 8888);
 
 // Log Requests
 app.use(logger({ format: ':date :remote-addr :method :status :url' })); // 'dev'
