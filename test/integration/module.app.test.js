@@ -40,3 +40,25 @@ describe('POST /', function () {
   });
 
 });
+
+describe('GET /error-next', function () {
+  it('should respond with 500 and Next Error', function (done) {
+    request.get('/error-next')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(500)
+      .expect({ error : { name : 'Error', message : 'Next Error' } })
+      .end(done);
+  });
+});
+
+describe('GET /error-throw', function () {
+  it('should respond with 500 and Throw Error', function (done) {
+    request.get('/error-throw')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(500)
+      .expect({ error : { name : 'Error', message : 'Throw Error' } })
+      .end(done);
+  });
+});

@@ -33,5 +33,33 @@ app.post('/', function (req, res, next) {
   res.send(200, req.body);
 });
 
+// Error Examples
+app.get('/error-next', function (req, res, next) {
+  next(new Error('Next Error'));
+});
+app.get('/error-throw', function (req, res, next) {
+  throw new Error('Throw Error');
+});
+
+// ### Handle Errors ###
+
+// Always keep this as the last middleware
+// It uses 4 arguments to signify it is an error handler
+app.use(function (error, req, res, next) {
+
+  // Send Response
+  res.send(500, {
+    error : {
+      name    : error.name,
+      message : error.message
+    }
+  });
+
+  // Do NOT call next() here unless you
+  // have additional error handlers to call
+  // Example: Error Logging Service API call
+
+});
+
 // Export App
 module.exports = app;
