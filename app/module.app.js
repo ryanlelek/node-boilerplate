@@ -16,7 +16,7 @@ app.set('port', 6789);
 app.use(logger({ format: ':date :remote-addr :method :status :url' })); // 'dev'
 
 // Parse POST/PUT Body
-app.use(body_parser());
+app.use(body_parser.json());
 
 // ### Routes ###
 
