@@ -28,7 +28,7 @@ app.use(method_override('_method'));
 app.use(body_parser.json());
 
 // Routes
-require('./routes.js')(app);
+require('./routes.boilerplate.js')(app);
 
 // Handle Errors
 app.use(errors.not_found);

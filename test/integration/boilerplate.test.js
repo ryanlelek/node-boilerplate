@@ -10,10 +10,10 @@ var app = require('../../app/index.js');
 // Bind SuperTest
 var request = supertest(app);
 
-describe('GET /', function () {
+describe('GET /boilerplate', function () {
 
   it('should respond with 200', function (done) {
-    request.get('/')
+    request.get('/boilerplate')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
@@ -23,10 +23,10 @@ describe('GET /', function () {
 
 });
 
-describe('POST /', function () {
+describe('POST /boilerplate', function () {
 
   it('should respond with 200', function (done) {
-    request.post('/')
+    request.post('/boilerplate')
       .set('Accept', 'application/json')
       .send({ data : 'test' })
       .expect('Content-Type', /json/)
@@ -37,10 +37,10 @@ describe('POST /', function () {
 
 });
 
-describe('DELETE /', function () {
+describe('DELETE /boilerplate', function () {
 
   it('should respond with 200', function (done) {
-    request.del('/')
+    request.del('/boilerplate')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
@@ -52,36 +52,13 @@ describe('DELETE /', function () {
 
 describe('Method Override', function () {
 
-  // POST / (same as above) with override
+  // POST /boilerplate (same as above) with override
   it('should respond with 200 and { deleted : true }', function (done) {
-    request.post('/?_method=DELETE')
+    request.post('/boilerplate?_method=DELETE')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
       .expect({ deleted : true })
-      .end(done);
-  });
-
-});
-
-describe('404 Not Found', function () {
-
-  it('should respond with 404 and the path/method', function (done) {
-    request.get('/does-not-exist')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(404)
-      .expect({ path : '/does-not-exist', method : 'GET' })
-      .end(done);
-  });
-
-  // Should not return query strings
-  it('should respond with 404 and the path/method', function (done) {
-    request.post('/lost-in-space?query=string&stuff=things')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(404)
-      .expect({ path : '/lost-in-space', method : 'POST' })
       .end(done);
   });
 
@@ -95,7 +72,7 @@ describe('Protected Route', function () {
   var incorrect_password = 'aliceisthebest';
 
   it('should deny a request without credentials', function (done) {
-    request.get('/protected')
+    request.get('/boilerplate-protected')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(401)
@@ -104,7 +81,7 @@ describe('Protected Route', function () {
   });
 
   it('should deny a request with an incorrect username/password', function (done) {
-    request.get('/protected')
+    request.get('/boilerplate-protected')
       .set('Accept', 'application/json')
       .auth(incorrect_username, incorrect_password)
       .expect('Content-Type', /json/)
@@ -114,7 +91,7 @@ describe('Protected Route', function () {
   });
 
   it('should deny a request with an incorrect username', function (done) {
-    request.get('/protected')
+    request.get('/boilerplate-protected')
       .set('Accept', 'application/json')
       .auth(incorrect_username, correct_password)
       .expect('Content-Type', /json/)
@@ -124,7 +101,7 @@ describe('Protected Route', function () {
   });
 
   it('should deny a request with an incorrect password', function (done) {
-    request.get('/protected')
+    request.get('/boilerplate-protected')
       .set('Accept', 'application/json')
       .auth(correct_username, incorrect_password)
       .expect('Content-Type', /json/)
@@ -134,7 +111,7 @@ describe('Protected Route', function () {
   });
 
   it('should allow a request with a correct username/password', function (done) {
-    request.get('/protected')
+    request.get('/boilerplate-protected')
       .set('Accept', 'application/json')
       .auth(correct_username, correct_password)
       .expect('Content-Type', /json/)
@@ -145,10 +122,33 @@ describe('Protected Route', function () {
 
 });
 
-describe('GET /error-next', function () {
+describe('Not Found (404)', function () {
 
-  it('should respond with 500 and Next Error', function (done) {
-    request.get('/error-next')
+  it('should respond with 404 and the path/method', function (done) {
+    request.get('/boilerplate-does-not-exist')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(404)
+      .expect({ path : '/boilerplate-does-not-exist', method : 'GET' })
+      .end(done);
+  });
+
+  // Should not return query strings
+  it('should respond with 404 and the path/method', function (done) {
+    request.post('/boilerplate-lost-in-space?query=string&stuff=things')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(404)
+      .expect({ path : '/boilerplate-lost-in-space', method : 'POST' })
+      .end(done);
+  });
+
+});
+
+describe('Server Error (500)', function () {
+
+  it('should respond with 500 when handling a error passed to next()', function (done) {
+    request.get('/boilerplate-error-next')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(500)
@@ -156,12 +156,8 @@ describe('GET /error-next', function () {
       .end(done);
   });
 
-});
-
-describe('GET /error-throw', function () {
-
-  it('should respond with 500 and Throw Error', function (done) {
-    request.get('/error-throw')
+  it('should respond with 500 when handling a thrown error', function (done) {
+    request.get('/boilerplate-error-throw')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(500)
