@@ -9,7 +9,6 @@ var method_override = require('method-override');
 
 // Custom Modules
 var errors = require('./errors.js');
-var auth   = require('./authentication.js');
 
 // New Express App
 var app = express();
@@ -28,41 +27,8 @@ app.use(method_override('_method'));
 // Parse POST/PUT Body
 app.use(body_parser.json());
 
-// ### Routes ###
-
-// GET Request
-app.get('/', function (req, res, next) {
-  // Return JSON object
-  res.send(200, { hello : 'goodbye' });
-});
-
-// POST Request
-app.post('/', function (req, res, next) {
-  // Return POST body (from JSON)
-  req.body.processed = true;
-  res.send(200, req.body);
-});
-
-// DELETE Request (for Method Override test)
-app.delete('/', function (req, res, next) {
-  res.send(200, { deleted : true });
-});
-
-// Error Examples
-app.get('/error-next', function (req, res, next) {
-  next(new Error('Next Error'));
-});
-app.get('/error-throw', function (req, res, next) {
-  throw new Error('Throw Error');
-});
-
-// Protected Route
-app.get('/protected',
-  auth.authentication_required('bob', 'bobisthebest'),
-  function (req, res, next) {
-    res.send(200, { secret : 'sauce' });
-  }
-);
+// Routes
+require('./routes.js')(app);
 
 // Handle Errors
 app.use(errors.not_found);
