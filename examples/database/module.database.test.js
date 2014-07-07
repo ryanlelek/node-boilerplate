@@ -6,7 +6,7 @@ require('should');
 var sinon = require('sinon');
 
 // Subject
-var database = require('../../app/module.database.js');
+var database = require('./module.database.js');
 
 describe('Module - Database', function () {
 
