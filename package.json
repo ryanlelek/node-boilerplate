@@ -1,7 +1,7 @@
 {
   "name" : "node-boilerplate",
   "version" : "0.0.1",
-  "repository" : "https://repo.git",
+  "repository" : "https://github.com/ryanlelek/node-boilerplate.git",
   "dependencies" : {
     "express"         : "4.5.1",
     "morgan"          : "1.1.1",
@@ -17,7 +17,7 @@
     "sinon"     : "1.10.2",
     "istanbul"  : "0.2.16"
   },
-  "scripts": {
+  "scripts" : {
     "start" : "make start",
     "test"  : "make test"
   },
