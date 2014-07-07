@@ -8,6 +8,9 @@ var body_parser     = require('body-parser');
 var method_override = require('method-override');
 var basic_auth      = require('basic-auth');
 
+// Custom Modules
+var errors = require('./errors.js');
+
 // New Express App
 var app = express();
 
@@ -75,35 +78,9 @@ app.get('/protected', authentication_required, function (req, res, next) {
   res.send(200, { secret : 'sauce' });
 });
 
-// ### Handle Errors ###
-
-// No Route Found
-// Second to last route (non-error catchall)
-// Do not call next(), just respond
-app.use(function (req, res, next) {
-  res.send(404, {
-    path      : req.path,
-    method    : req.method
-  });
-});
-
-// Always keep this as the last middleware
-// It uses 4 arguments to signify it is an error handler
-app.use(function (error, req, res, next) {
-
-  // Send Response
-  res.send(500, {
-    error : {
-      name    : error.name,
-      message : error.message
-    }
-  });
-
-  // Do NOT call next() here unless you
-  // have additional error handlers to call
-  // Example: Error Logging Service API call
-
-});
+// Handle Errors
+app.use(errors.not_found);
+app.use(errors.server_error);
 
 // Export App
 module.exports = app;
