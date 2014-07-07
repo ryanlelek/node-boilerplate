@@ -5,7 +5,7 @@
 var supertest = require('supertest');
 
 // Subject
-var app = require('../../app/module.app.js');
+var app = require('../../app/index.js');
 
 // Bind SuperTest
 var request = supertest(app);
