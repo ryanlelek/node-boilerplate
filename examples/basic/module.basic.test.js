@@ -5,7 +5,7 @@
 require('should');
 
 // Subject
-var basic = require('../../app/module.basic.js');
+var basic = require('./module.basic.js');
 
 describe('Module - Basic', function () {
 
