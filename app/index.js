@@ -14,7 +14,7 @@ var errors = require('./errors.js');
 var app = express();
 
 // Set Port
-app.set('port', 8888);
+app.set('port', 3000);
 
 // Log Requests
 app.use(logger({ format: ':date :remote-addr :method :status :url' })); // 'dev'
