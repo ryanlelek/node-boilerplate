@@ -3,4 +3,12 @@
 
 ## For Supporting Cross-Domain Requests
 
-Coming Soon
+### Install Module
+
+Add to package.json
+
+    "cors" : "2.4.1"
+
+or run
+
+    $ npm install --save cors

@@ -1,46 +1,33 @@
 
 'use strict';
 
-module.exports = function (app) {
+// Modules
+var cors = require('cors');
 
-  app.get('/public-api-cors', [
-    allow_cors('local.example.com'),
-    function (req, res, next) {
-      console.log(req.headers);
-      res.send(200, { api : 'online' });
-    }
-  ]);
-
-  app.options('/public-api-cors', [
-    allow_cors('local.example.com'),
-    function (req, res, next) {
-      console.log(req.headers);
-      res.send(200, { api : 'online' });
-    }
-  ]);
-
-  app.post('/public-api-cors', [
-    allow_cors('local.example.com'),
-    function (req, res, next) {
-      console.log(req.headers);
-      res.send(200, { api : 'posted', data : req.body.data });
-    }
-  ]);
-
+// Configure CORS
+var cors_whitelist = [
+  'http://local.example.com',
+  'https://local.example.com'
+];
+var cors_options   = {
+  origin : function (origin, callback) {
+    console.log(origin);
+    var origin_allowed = cors_whitelist.indexOf(origin) !== -1;
+    callback(null, origin_allowed);
+  }
 };
 
-// TODO: Add option for HTTPS option
-function allow_cors (domain) {
+module.exports = function (app) {
 
-  return function (req, res, next) {
+  app.get('/public-api-cors', cors(cors_options), function (req, res, next) {
+    console.log(req.headers);
+    res.send(200, { api : 'online' });
+  });
 
-    // CORS Headers
-    res.set('Access-Control-Allow-Origin', 'http://' + domain);
-    res.set('Access-Control-Allow-Methods', ['OPTIONS', 'GET', 'POST']);
-    res.set('Access-Control-Allow-Headers', 'Content-Type');
+  app.options('/public-api-cors', cors(cors_options));
+  app.post('/public-api-cors', cors(cors_options), function (req, res, next) {
+    console.log(req.headers);
+    res.send(200, { api : 'posted', data : req.body.data });
+  });
 
-    next();
-
-  };
-
-}
+};
