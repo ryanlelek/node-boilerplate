@@ -2,6 +2,7 @@
 'use strict';
 
 // Modules
+require('should');
 var supertest = require('supertest');
 
 // Subject
