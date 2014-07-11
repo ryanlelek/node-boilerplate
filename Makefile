@@ -5,9 +5,7 @@
 all: clean install start
 
 .PHONY: clean
-clean:
-	# Remove generated files
-	rm -rf ./node_modules/ ./coverage/
+clean: remove_files drop_database
 
 .PHONY:
 remove_files:
