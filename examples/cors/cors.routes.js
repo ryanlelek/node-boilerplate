@@ -2,28 +2,14 @@
 'use strict';
 
 // Modules
-var cors = require('cors');
-
-// Configure CORS
-var cors_whitelist = [
-  'http://allowed.example.com',
-  'https://allowed.example.com'
-];
-
-var cors_options = {
-  origin : function (origin, callback) {
-    var origin_allowed = cors_whitelist.indexOf(origin) !== -1;
-    console.log('Origin Allowed', origin, origin_allowed);
-    callback(null, origin_allowed);
-  }
-};
+var cors_middleware = require('./cors.middleware.js');
 
 // Exports
 module.exports = function (app) {
 
   // GET Request
   app.get('/cors', [
-    cors(cors_options),
+    cors_middleware,
     function (req, res, next) {
       res.send(200, {
         cors : 'successful'
@@ -32,9 +18,9 @@ module.exports = function (app) {
   ]);
 
   // POST Request (with pre-flight OPTIONS)
-  app.options('/cors', cors(cors_options));
+  app.options('/cors', cors_middleware);
   app.post('/cors', [
-    cors(cors_options),
+    cors_middleware,
     function (req, res, next) {
       res.send(200, {
         api  : 'posted',
