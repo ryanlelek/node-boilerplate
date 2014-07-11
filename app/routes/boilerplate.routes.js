@@ -2,8 +2,8 @@
 'use strict';
 
 // Modules
-var controller_response = require('./controllers/response.controller.js');
-var controller_auth     = require('./controllers/authentication.controller.js');
+var controller_response = require('../controllers/response.controller.js');
+var controller_auth     = require('../controllers/authentication.controller.js');
 
 // Exports
 module.exports = function (app) {

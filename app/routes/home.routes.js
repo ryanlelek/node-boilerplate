@@ -2,7 +2,7 @@
 'use strict';
 
 // Modules
-var controller_response = require('./controllers/response.controller.js');
+var controller_response = require('../controllers/response.controller.js');
 
 // Exports
 module.exports = function (app) {

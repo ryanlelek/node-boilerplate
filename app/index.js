@@ -26,8 +26,8 @@ app.use(method_override('_method'));
 app.use(body_parser.json());
 
 // Routes
-require('./routes.js')(app);
-require('./boilerplate.routes.js')(app);
+require('./routes/boilerplate.routes.js') (app);
+require('./routes/home.routes.js')        (app);
 
 // Handle Errors
 app.use(controller_response.not_found);
