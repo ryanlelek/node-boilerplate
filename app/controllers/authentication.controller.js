@@ -6,12 +6,12 @@ var basic_auth = require('basic-auth');
 
 // Exports
 module.exports = {
-  authentication_required : authentication_required
+  http_basic : http_basic
 };
 
-// Instead, make to return true/false
+// TODO: Function that returns true/false
 // Also allow multiple users / methods
-function authentication_required (username, password) {
+function http_basic (username, password) {
   return function (req, res, next) {
     var credentials = basic_auth(req);
     if (credentials !== undefined) {

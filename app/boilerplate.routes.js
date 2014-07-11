@@ -2,7 +2,7 @@
 'use strict';
 
 // Modules
-var auth = require('./authentication.js');
+var auth = require('./controllers/authentication.controller.js');
 
 // Exports
 module.exports = function (app) {
@@ -35,7 +35,7 @@ module.exports = function (app) {
 
   // Protected Route
   app.get('/boilerplate-protected',
-    auth.authentication_required('bob', 'bobisthebest'),
+    auth.http_basic('bob', 'bobisthebest'),
     function (req, res, next) {
       res.send(200, { secret : 'sauce' });
     }
