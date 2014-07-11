@@ -26,4 +26,20 @@ describe('Error - ErrorNotFound', function () {
     new error_not_found('My Message').should.have.property('message').and.equal('My Message');
   });
 
+  it('should not have a data property by default', function () {
+    new error_not_found().should.not.have.property('data');
+  });
+
+  it('should have a data property when sent an object with method', function () {
+    var error = new error_not_found('message', { method : 'crystal' });
+    error.should.have.property('data').and.be.type('object');
+    error.data.should.have.property('method').and.equal('crystal');
+  });
+
+  it('should have a data property when sent an object with path', function () {
+    var error = new error_not_found('message', { path : 'dirt' });
+    error.should.have.property('data').and.be.type('object');
+    error.data.should.have.property('path').and.equal('dirt');
+  });
+
 });
