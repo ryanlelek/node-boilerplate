@@ -30,31 +30,26 @@ module.exports = {
   // It uses 4 arguments to signify it is an error handler
   failure : function (error, req, res, next) {
 
-    // If it's an error from our app
-    // Send a response with the information
-    if (error.status) {
+    // Default properties
+    if (!error.status) { error.status = 500; }
+    if (!error.type) { error.type = 'server'; }
 
-      res.send(error.status, {
-        error : {
-          type    : error.type,
-          name    : error.name,
-          message : error.message,
-          data    : error.data
-        }
-      });
+    // Compose information sent back
+    // We may not want to send everything
+    // in the error for security/privacy reasons
+    var error_to_send = {
+      type    : error.type,
+      name    : error.name,
+      message : error.message
+    };
 
-    } else {
+    // Add data if present
+    if (error.data) { error_to_send.data = error.data; }
 
-      // Generic Catch-all
-      res.send(500, {
-        error : {
-          type    : 'server',
-          name    : error.name,
-          message : error.message
-        }
-      });
-
-    }
+    // Respond
+    res.send(error.status, {
+      error : error_to_send
+    });
 
     // Do not call next()
     // unless you have a middleware ready

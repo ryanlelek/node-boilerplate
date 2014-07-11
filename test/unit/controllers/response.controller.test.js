@@ -54,45 +54,70 @@ describe('Controller - Response', function () {
 
   describe('.failure()', function () {
 
-    it('should return the given status code and the error object when we encounter an error', function (done) {
-
-      var error = { status : 123456, type : 'server', name : 'SomeError', message : 'Only select properties', data : 'some-data' };
-      var req = {};
-      var res = {
+    it('should return the error status code when set', function () {
+      var error = new Error();
+      error.status = 123;
+      controller_response.failure(error, {}, {
         send : function (status, data) {
-          status.should.equal(123456);
-          // TODO: This needs certain properties and they can't be ommitted
-          data.should.have.property('error').and.eql({
-            type    : 'server',
-            name    : 'SomeError',
-            message : 'Only select properties',
-            data    : 'some-data'
-          });
-          return done();
+          status.should.equal(123);
         }
-      };
-
-      controller_response.failure(error, req, res, function () {});
-
+      });
     });
 
-    it('should return a generic 500 status code when error.status is not present', function (done) {
-      var error = new Error('Generic error message');
-      var req = {};
-      var res = {
+    it('should return a 500 status code by default', function () {
+      var error = new Error();
+      controller_response.failure(error, {}, {
         send : function (status, data) {
           status.should.equal(500);
-          data.should.have.property('error').and.eql({
-            type    : 'server',
-            name    : 'Error',
-            message : 'Generic error message'
-          });
-          done();
         }
-      };
+      });
+    });
 
-      controller_response.failure(error, req, res, function () {});
+    it('should return a error object in the response body', function () {
+      var error = new Error();
+      controller_response.failure(error, {}, {
+        send : function (status, data) {
+          data.should.have.property('error').and.be.type('object');
+        }
+      });
+    });
 
+    it('should return the error type when present', function () {
+      var error = new Error();
+      error.type = 'something';
+      controller_response.failure(error, {}, {
+        send : function (status, data) {
+          data.error.should.have.property('type').and.equal('something');
+        }
+      });
+    });
+
+    it('should return a "server" error type by default', function () {
+      var error = new Error();
+      controller_response.failure(error, {}, {
+        send : function (status, data) {
+          data.error.should.have.property('type').and.equal('server');
+        }
+      });
+    });
+
+    it('should not have a data property by default', function () {
+      var error = new Error();
+      controller_response.failure(error, {}, {
+        send : function (status, data) {
+          data.error.should.not.have.property('data');
+        }
+      });
+    });
+
+    it('should send the error data when present', function () {
+      var error = new Error();
+      error.data = 'some-data';
+      controller_response.failure(error, {}, {
+        send : function (status, data) {
+          data.error.should.have.property('data').and.equal('some-data');
+        }
+      });
     });
 
   });
