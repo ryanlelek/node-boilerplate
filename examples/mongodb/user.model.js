@@ -2,7 +2,7 @@
 'use strict';
 
 // Modules
-var mongoose = require('./mongoose.connect.js');
+var mongoose = require('../library/mongoose.library.js');
 
 // Configure Schema
 var schema = mongoose.Schema({
@@ -10,8 +10,10 @@ var schema = mongoose.Schema({
   password : String
 });
 
-// Build Model from Schema
-var model = mongoose.model('User', schema);
+// Custom Methods
+schema.statics.findByUsername = function (username, done) {
+  this.find({ username : username }, done);
+};
 
 // Exports
-module.exports = model;
+module.exports = mongoose.model('User', schema);
