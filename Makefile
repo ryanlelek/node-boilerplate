@@ -47,6 +47,15 @@ unit:
 		-R spec \
 		test/unit/
 
+.PHONY: integration
+integration:
+	# Run integration tests with code coverage
+	./node_modules/istanbul/lib/cli.js cover \
+	./node_modules/mocha/bin/_mocha -- \
+		--recursive \
+		-R spec \
+		test/integration/
+
 .PHONY: report
 report:
 	# Launching Code Coverage Report in Browser
