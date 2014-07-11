@@ -7,7 +7,8 @@ install:
 
 .PHONY: clean
 clean:
-	./scripts/clean.sh
+	# Remove generated files
+	rm -rf ./node_modules/ ./coverage/
 
 .PHONY: start
 start:
