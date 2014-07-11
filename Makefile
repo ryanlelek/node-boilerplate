@@ -1,5 +1,9 @@
 #!/usr/bin/make
 
+# Default action if you just run "make"
+.PHONY: all
+all: clean install start
+
 .PHONY: install
 install:
 	# Install Node.js Modules
