@@ -25,7 +25,10 @@ test:
 
 .PHONY: delint
 delint:
-	./scripts/delint.sh
+	# Delint Files with JSHint
+	./node_modules/jshint/bin/jshint \
+		app/ \
+		test/
 
 .PHONY: coverage
 coverage:
