@@ -41,4 +41,5 @@ coverage:
 
 .PHONY: report
 report:
-	./scripts/report.sh
+	# Launching Code Coverage Report in Browser
+	open ./coverage/lcov-report/index.html
