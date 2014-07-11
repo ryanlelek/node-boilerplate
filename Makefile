@@ -31,15 +31,7 @@ delint:
 
 .PHONY: test
 test:
-	# Run all tests (no code coverage)
-	./node_modules/mocha/bin/mocha \
-		--recursive \
-		-R spec \
-		test/
-
-.PHONY: coverage
-coverage:
-	# Run unit tests with code coverage
+	# Run tests with code coverage
 	./node_modules/istanbul/lib/cli.js cover \
 	./node_modules/mocha/bin/_mocha -- \
 		--recursive \
