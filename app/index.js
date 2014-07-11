@@ -7,12 +7,13 @@ var logger              = require('morgan');
 var body_parser         = require('body-parser');
 var method_override     = require('method-override');
 var controller_response = require('./controllers/response.controller.js');
+var config              = require('./config/index.js');
 
 // New Express App
 var app = express();
 
 // Set Port
-app.set('port', 3000);
+app.set('port', config.server.port);
 
 // Log Requests
 app.use(logger({ format: ':date :remote-addr :method :status :url' })); // 'dev'
