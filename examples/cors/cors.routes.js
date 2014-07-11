@@ -6,28 +6,41 @@ var cors = require('cors');
 
 // Configure CORS
 var cors_whitelist = [
-  'http://local.example.com',
-  'https://local.example.com'
+  'http://allowed.example.com',
+  'https://allowed.example.com'
 ];
-var cors_options   = {
+
+var cors_options = {
   origin : function (origin, callback) {
-    console.log(origin);
     var origin_allowed = cors_whitelist.indexOf(origin) !== -1;
+    console.log('Origin Allowed', origin, origin_allowed);
     callback(null, origin_allowed);
   }
 };
 
+// Exports
 module.exports = function (app) {
 
-  app.get('/public-api-cors', cors(cors_options), function (req, res, next) {
-    console.log(req.headers);
-    res.send(200, { api : 'online' });
-  });
+  // GET Request
+  app.get('/cors', [
+    cors(cors_options),
+    function (req, res, next) {
+      res.send(200, {
+        cors : 'successful'
+      });
+    }
+  ]);
 
-  app.options('/public-api-cors', cors(cors_options));
-  app.post('/public-api-cors', cors(cors_options), function (req, res, next) {
-    console.log(req.headers);
-    res.send(200, { api : 'posted', data : req.body.data });
-  });
+  // POST Request (with pre-flight OPTIONS)
+  app.options('/cors', cors(cors_options));
+  app.post('/cors', [
+    cors(cors_options),
+    function (req, res, next) {
+      res.send(200, {
+        api  : 'posted',
+        data : req.body.data
+      });
+    }
+  ]);
 
 };
