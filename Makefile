@@ -43,3 +43,8 @@ coverage:
 report:
 	# Launching Code Coverage Report in Browser
 	open ./coverage/lcov-report/index.html
+
+.PHONY: drop_database
+drop_database:
+	# Drop Database
+	mongo boilerplate --eval "db.dropDatabase()"
