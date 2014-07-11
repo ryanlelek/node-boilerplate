@@ -2,7 +2,8 @@
 
 .PHONY: install
 install:
-	./scripts/install.sh
+	# Install Node.js Modules
+	npm install
 
 .PHONY: clean
 clean:
