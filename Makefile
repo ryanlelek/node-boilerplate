@@ -12,7 +12,8 @@ clean:
 
 .PHONY: start
 start:
-	./scripts/start.sh
+	# Start the HTTP server
+	node ./app/server.js
 
 .PHONY: test
 test:
