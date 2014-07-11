@@ -9,6 +9,11 @@ clean:
 	# Remove generated files
 	rm -rf ./node_modules/ ./coverage/
 
+.PHONY:
+remove_files:
+	# Remove generated files
+	rm -rf ./node_modules/ ./coverage/
+
 .PHONY: drop_database
 drop_database:
 	# Drop Database
