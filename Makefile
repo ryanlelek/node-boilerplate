@@ -38,6 +38,15 @@ test:
 		-R spec \
 		test/
 
+.PHONY: unit
+unit:
+	# Run unit tests with code coverage
+	./node_modules/istanbul/lib/cli.js cover \
+	./node_modules/mocha/bin/_mocha -- \
+		--recursive \
+		-R spec \
+		test/unit/
+
 .PHONY: report
 report:
 	# Launching Code Coverage Report in Browser
