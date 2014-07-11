@@ -2,13 +2,11 @@
 'use strict';
 
 // Modules
-var express         = require('express');
-var logger          = require('morgan');
-var body_parser     = require('body-parser');
-var method_override = require('method-override');
-
-// Custom Modules
-var errors = require('./errors.js');
+var express             = require('express');
+var logger              = require('morgan');
+var body_parser         = require('body-parser');
+var method_override     = require('method-override');
+var controller_response = require('./controllers/response.controller.js');
 
 // New Express App
 var app = express();
@@ -32,8 +30,8 @@ require('./routes.js')(app);
 require('./boilerplate.routes.js')(app);
 
 // Handle Errors
-app.use(errors.not_found);
-app.use(errors.server_error);
+app.use(controller_response.not_found);
+app.use(controller_response.failure);
 
 // Export App
 module.exports = app;

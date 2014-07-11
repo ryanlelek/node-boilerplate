@@ -130,7 +130,15 @@ describe('Not Found (404)', function () {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(404)
-      .expect({ path : '/boilerplate-does-not-exist', method : 'GET' })
+      .expect({
+        error : {
+          type    : 'client',
+          name    : 'ErrorNotFound',
+          message : 'Resource was not found',
+          method  : 'GET',
+          path    : '/boilerplate-does-not-exist'
+        }
+      })
       .end(done);
   });
 
@@ -140,7 +148,15 @@ describe('Not Found (404)', function () {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(404)
-      .expect({ path : '/boilerplate-lost-in-space', method : 'POST' })
+      .expect({
+        error : {
+          type    : 'client',
+          name    : 'ErrorNotFound',
+          message : 'Resource was not found',
+          method  : 'POST',
+          path    : '/boilerplate-lost-in-space'
+        }
+      })
       .end(done);
   });
 
@@ -153,7 +169,13 @@ describe('Server Error (500)', function () {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(500)
-      .expect({ error : { name : 'Error', message : 'Next Error' } })
+      .expect({
+        error : {
+          type    : 'server',
+          name    : 'Error',
+          message : 'Next Error'
+        }
+      })
       .end(done);
   });
 
@@ -162,7 +184,13 @@ describe('Server Error (500)', function () {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(500)
-      .expect({ error : { name : 'Error', message : 'Throw Error' } })
+      .expect({
+        error : {
+          type    : 'server',
+          name    : 'Error',
+          message : 'Throw Error'
+        }
+      })
       .end(done);
   });
 
