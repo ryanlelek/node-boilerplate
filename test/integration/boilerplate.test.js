@@ -135,8 +135,10 @@ describe('Not Found (404)', function () {
           type    : 'client',
           name    : 'ErrorNotFound',
           message : 'Resource was not found',
-          method  : 'GET',
-          path    : '/boilerplate-does-not-exist'
+          data    : {
+            method : 'GET',
+            path   : '/boilerplate-does-not-exist'
+          }
         }
       })
       .end(done);
@@ -153,8 +155,10 @@ describe('Not Found (404)', function () {
           type    : 'client',
           name    : 'ErrorNotFound',
           message : 'Resource was not found',
-          method  : 'POST',
-          path    : '/boilerplate-lost-in-space'
+          data    : {
+            method : 'POST',
+            path   : '/boilerplate-lost-in-space'
+          }
         }
       })
       .end(done);

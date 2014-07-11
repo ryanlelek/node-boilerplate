@@ -1,29 +1,20 @@
 
 'use strict';
 
+// Modules
+var ErrorNotFound = require('../errors/not_found.error.js');
+
 module.exports = {
 
   success : function (req, res, next) {
-
     res.send(200, res.locals);
-
   },
 
   // No Route Found
   // Second to last route (non-error catchall)
   // Do not call next(), just respond
   not_found : function (req, res, next) {
-
-    res.send(404, {
-      error : {
-        name    : 'ErrorNotFound',
-        type    : 'client',
-        message : 'Resource was not found',
-        method  : req.method,
-        path    : req.path
-      }
-    });
-
+    next(new ErrorNotFound('Resource was not found', req));
   },
 
   // Always keep this as the last middleware

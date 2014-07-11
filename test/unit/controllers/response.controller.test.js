@@ -32,21 +32,23 @@ describe('Controller - Response', function () {
 
   describe('.not_found()', function () {
 
-    it('should return a 404 status code when route not found', function (done) {
+    it('should return a 404 status code when route not found', function () {
 
-      var req = {};
-      var res = {
-        send : function (status, data) {
-          status.should.equal(404);
-          data.should.have.property('error');
-          data.error.should.have.property('name').and.equal('ErrorNotFound');
-          data.error.should.have.property('type').and.equal('client');
-          data.error.should.have.property('message').and.equal('Resource was not found');
-          done();
-        }
-      };
+      controller_response.not_found({
+        method : 'WALK',
+        path   : '/less-traveled'
+      }, {}, function (error) {
+        error.should.be.type('object');
+        error.should.have.property('name').and.equal('ErrorNotFound');
+        error.should.have.property('type').and.equal('client');
+        error.should.have.property('status').and.equal(404);
+        error.should.have.property('message').and.equal('Resource was not found');
 
-      controller_response.not_found(req, res);
+        error.should.have.property('data').and.be.type('object');
+        error.data.should.have.property('method').and.equal('WALK');
+        error.data.should.have.property('path').and.equal('/less-traveled');
+
+      });
 
     });
 
