@@ -32,7 +32,12 @@ delint:
 
 .PHONY: coverage
 coverage:
-	./scripts/coverage.sh
+	# Run unit tests with code coverage
+	./node_modules/istanbul/lib/cli.js cover \
+	./node_modules/mocha/bin/_mocha -- \
+		--recursive \
+		-R spec \
+		test/
 
 .PHONY: report
 report:
