@@ -17,7 +17,11 @@ start:
 
 .PHONY: test
 test:
-	./scripts/test.sh
+	# Run all tests (no code coverage)
+	./node_modules/mocha/bin/mocha \
+		--recursive \
+		-R spec \
+		test/
 
 .PHONY: delint
 delint:
