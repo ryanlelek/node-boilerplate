@@ -3,7 +3,7 @@
 
 // Modules
 var express             = require('express');
-var config              = require('./config/index.js');
+var config              = require('./config.js');
 var controller_response = require('./controllers/response.controller.js');
 
 // New Express App

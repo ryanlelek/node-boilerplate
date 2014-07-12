@@ -13,7 +13,7 @@ function function_name (fun) {
 }
 
 // Subject
-var config = require('../../app/config/index.js');
+var config = require('../../app/config.js');
 
 var default_app = {
   set : function () {},
