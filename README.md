@@ -14,10 +14,7 @@ They are there for your reference only.
 # Commands
 
 ### make install  
-Runs installation script
-
-### make clean  
-Removes generated files
+Install dependencies
 
 ### make start  
 Starts HTTP Server
@@ -28,8 +25,21 @@ Runs unit and integration tests
 ### make delint  
 Runs JSHint on app and test code
 
-### make coverage  
-Generates code-coverage report
+### make unit  
+Runs unit tests
+
+### make integration  
+Runs integration tests
 
 ### make report  
 Shows code-coverage report in browser
+
+### make remove_files  
+Removes generated files
+
+### make drop_database  
+Drops the MongoDB database ("boilerplate" by default)
+
+### make clean  
+Removes generated files
+Drops the MongoDB database
