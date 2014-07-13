@@ -47,7 +47,7 @@ describe('Config', function () {
           set : function () {},
           use : function (middleware) {
             if (function_name(middleware) === 'logger') {
-              called = true
+              called = true;
             }
           }
         }, 'DEFAULT');
@@ -63,7 +63,7 @@ describe('Config', function () {
           set : function () {},
           use : function (middleware) {
             if (function_name(middleware) === 'logger') {
-              called = true
+              called = true;
             }
           }
         }, 'DEVELOPMENT');
