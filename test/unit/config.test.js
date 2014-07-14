@@ -48,6 +48,54 @@ describe('Config', function () {
 
     });
 
+    describe('port', function () {
+
+      it('should default to 3000', function () {
+        var settings = {};
+        config.global({
+          use : function () {},
+          set : function (key, value) {
+            settings[key] = value;
+          }
+        });
+        settings.should.have.property('port').and.equal(3000);
+      });
+
+      it('should use default of 3000 when given an invalid integer', function () {
+        var settings = {};
+        config.global({
+          use : function () {},
+          set : function (key, value) {
+            settings[key] = value;
+          }
+        }, { PORT : 'eighty' });
+        settings.should.have.property('port').and.equal(3000);
+      });
+
+      it('should use the custom port when given an integer string', function () {
+        var settings = {};
+        config.global({
+          use : function () {},
+          set : function (key, value) {
+            settings[key] = value;
+          }
+        }, { PORT : '1234' });
+        settings.should.have.property('port').and.equal(1234);
+      });
+
+      it('should use the custom port when given an integer number', function () {
+        var settings = {};
+        config.global({
+          use : function () {},
+          set : function (key, value) {
+            settings[key] = value;
+          }
+        }, { PORT : 5678 });
+        settings.should.have.property('port').and.equal(5678);
+      });
+
+    });
+
     describe('logger', function () {
 
       it('should not run a logger in DEFAULT environment', function () {

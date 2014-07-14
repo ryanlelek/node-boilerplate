@@ -25,7 +25,14 @@ module.exports = {
     if (!environment.NODE_ENV) { environment.NODE_ENV = 'PRODUCTION'; }
 
     // Set Port
-    app.set('port', defaults.port);
+    var port = defaults.port
+    if (environment.PORT) {
+      var port_parsed = parseInt(environment.PORT, 10);
+      if (!isNaN(port_parsed)) {
+        port = port_parsed;
+      }
+    }
+    app.set('port', port);
 
     // Set View Options
     app.set('views', path.join(__dirname, 'views'));
