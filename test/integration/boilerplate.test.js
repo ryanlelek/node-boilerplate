@@ -65,6 +65,18 @@ describe('Method Override', function () {
 
 });
 
+describe('GET /boilerplate-view', function () {
+
+  it('should respond with 200', function (done) {
+    request.get('/boilerplate-view')
+      .expect('Content-Type', /html/)
+      .expect(200)
+      .expect(/MyCustomTitle/)
+      .end(done);
+  });
+
+});
+
 describe('Protected Route', function () {
 
   var correct_username   = 'bob';

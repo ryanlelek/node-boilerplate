@@ -2,6 +2,7 @@
 'use strict';
 
 // Modules
+var path            = require('path');
 var logger          = require('morgan');
 var body_parser     = require('body-parser');
 var method_override = require('method-override');
@@ -25,6 +26,10 @@ module.exports = {
 
     // Set Port
     app.set('port', defaults.port);
+
+    // Set View Options
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'ejs');
 
     // Log Requests
     if (environment.NODE_ENV === 'DEVELOPMENT') {

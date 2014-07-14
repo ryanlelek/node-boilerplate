@@ -56,4 +56,9 @@ module.exports = function (app) {
     controller_response.success
   ]);
 
+  // View
+  app.get('/boilerplate-view', function (req, res, next) {
+    res.render('index', { title : 'MyCustomTitle' });
+  });
+
 };
