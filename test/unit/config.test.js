@@ -31,9 +31,19 @@ describe('Config', function () {
         environment.should.equal('PRODUCTION');
       });
 
-      it('should be itentical when an environment is given', function () {
-        var environment = config.global(default_app, 'SOME-ENVIRONMENT');
+      it('should be identical when an environment object is given', function () {
+        var environment = config.global(default_app, { NODE_ENV : 'SOME-ENVIRONMENT' });
         environment.should.equal('SOME-ENVIRONMENT');
+      });
+
+      it('should accept a string as an environment', function () {
+        var environment = config.global(default_app, 'STRING');
+        environment.should.equal('STRING');
+      });
+
+      it('should not accept a number as an environment', function () {
+        var environment = config.global(default_app, 12345);
+        environment.should.equal('PRODUCTION');
       });
 
     });
@@ -50,7 +60,7 @@ describe('Config', function () {
               called = true;
             }
           }
-        }, 'DEFAULT');
+        }, { NODE_ENV : 'DEFAULT' });
 
         called.should.equal(false);
 
@@ -66,7 +76,7 @@ describe('Config', function () {
               called = true;
             }
           }
-        }, 'DEVELOPMENT');
+        }, { NODE_ENV : 'DEVELOPMENT' });
 
         called.should.equal(true);
 

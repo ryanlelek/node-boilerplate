@@ -10,7 +10,7 @@ var controller_response = require('./controllers/response.controller.js');
 var app = express();
 
 // Global Settings
-config.global(app, process.env.NODE_ENV);
+config.global(app, process.env);
 
 // Routes
 require('./routes/boilerplate.routes.js') (app);
