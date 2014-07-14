@@ -14,7 +14,7 @@ config.global(app, process.env);
 
 // Routes
 require('./routes/boilerplate.routes.js') (app);
-require('./routes/home.routes.js')        (app);
+require('./routes/main.routes.js')        (app);
 
 // Handle Errors
 app.use(controller_response.not_found);
