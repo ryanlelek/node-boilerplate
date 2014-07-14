@@ -64,4 +64,4 @@ report:
 .PHONY: start
 start:
 	# Start the HTTP server
-	node ./app/server.js
+	node ./server.js

@@ -3,7 +3,7 @@
 
 // Modules
 var http = require('http');
-var app  = require('./index.js');
+var app  = require('./app/index.js');
 
 // HTTP Server
 http.createServer(app).listen(app.get('port'), function () {
