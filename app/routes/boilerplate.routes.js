@@ -39,8 +39,19 @@ module.exports = function (app) {
   ]);
 
   // View
-  app.get('/boilerplate-view', function (req, res, next) {
-    res.render('index', { title : 'MyCustomTitle' });
-  });
+  app.get('/boilerplate-view', [
+    function (req, res, next) {
+
+      // Mark the view we want
+      res.locals._view = 'index';
+
+      // Add data for the view
+      res.locals.title = 'MyCustomTitle';
+
+      next();
+
+    },
+    controller_response.success
+  ]);
 
 };

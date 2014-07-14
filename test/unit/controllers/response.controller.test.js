@@ -11,21 +11,56 @@ describe('Controller - Response', function () {
 
   describe('.success()', function () {
 
-    it('should return a 200 status code and res.locals data when successful', function (done) {
-
-      var req = {};
+    it('should return a 200 status code when sending JSON', function () {
       var res = {
-        locals : { key1 : 'value1', key2 : 'value2' },
+        locals : {},
         send   : function (status, data) {
           status.should.equal(200);
-          data.should.have.property('key1').and.equal('value1');
-          data.should.have.property('key2').and.equal('value2');
-          return done();
         }
       };
+      controller_response.success({}, res);
+    });
 
-      controller_response.success(req, res);
+    it('should send JSON version of res.locals by default', function () {
+      var res = {
+        locals : { key : 'value', some : 'data' },
+        send   : function (status, data) {
+          data.should.have.property('key').and.equal('value');
+          data.should.have.property('some').and.equal('data');
+        }
+      };
+      controller_response.success({}, res);
+    });
 
+    it('should render a view when res.locals._view is set', function () {
+      var res = {
+        locals : { _view : 'myview' },
+        render : function (view) {
+          view.should.equal('myview');
+        }
+      };
+      controller_response.success({}, res);
+    });
+
+    it('should provide res.locals data to view when rendering', function () {
+      var res = {
+        locals : { _view : 'myview', key : 'value', some : 'data' },
+        render : function (view, data) {
+          data.should.have.property('key').and.equal('value');
+          data.should.have.property('some').and.equal('data');
+        }
+      };
+      controller_response.success({}, res);
+    });
+
+    it('should delete res.locals._view before rendering', function () {
+      var res = {
+        locals : { _view : 'myview', key : 'value' },
+        render : function (view, data) {
+          data.should.not.have.property('_view');
+        }
+      };
+      controller_response.success({}, res);
     });
 
   });

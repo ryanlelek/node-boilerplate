@@ -7,7 +7,23 @@ var ErrorNotFound = require('../errors/not_found.error.js');
 module.exports = {
 
   success : function (req, res, next) {
-    res.send(200, res.locals);
+
+    if (res.locals._view) {
+
+      // Store View Name and Delete
+      var view = res.locals._view;
+      delete res.locals._view;
+
+      // Send HTML View
+      res.render(view, res.locals);
+
+    } else {
+
+      // Send JSON
+      res.send(200, res.locals);
+
+    }
+
   },
 
   // No Route Found
