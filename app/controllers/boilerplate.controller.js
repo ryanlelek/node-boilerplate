@@ -7,7 +7,13 @@ function say_hello (req, res, next) {
   next();
 }
 
+function mark_deleted (req, res, next) {
+  res.locals.deleted = true;
+  next();
+}
+
 // Exports
 module.exports = {
-  say_hello : say_hello
+  say_hello    : say_hello,
+  mark_deleted : mark_deleted
 };

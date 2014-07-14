@@ -20,4 +20,15 @@ describe('Controller - Boilerplate', function () {
 
   });
 
+  describe('.mark_deleted()', function () {
+
+    it('should add a "deleted" property to res.locals', function () {
+      var res = { locals : {} };
+      controller_boilerplate.mark_deleted({}, res, function () {
+        res.locals.should.have.property('deleted').and.equal(true);
+      });
+    });
+
+  });
+
 });

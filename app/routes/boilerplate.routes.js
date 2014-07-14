@@ -28,10 +28,7 @@ module.exports = function (app) {
 
   // DELETE Request (for Method Override test)
   app.delete('/boilerplate', [
-    function (req, res, next) {
-      res.locals.deleted = true;
-      next();
-    },
+    controller_boilerplate.mark_deleted,
     controller_response.success
   ]);
 
