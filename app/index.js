@@ -12,6 +12,9 @@ var app = express();
 // Global Settings
 config.global(app, process.env);
 
+// Serve static files before the routes
+// app.use(express.static(__dirname + '/../public')));
+
 // Routes
 require('./routes/boilerplate.routes.js') (app);
 require('./routes/main.routes.js')        (app);

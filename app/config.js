@@ -43,13 +43,13 @@ module.exports = {
     // with limited clients/browsers
     app.use(method_override('_method'));
 
-    // Parse POST/PUT Body
-    app.use(body_parser.json());
-
     // NOTE: This only parses JSON bodies (application/json)
     // If you need urlencoded (x-www-form-urlencoded)
     // or multipart (multipart/form-data), you'll need to add them
     // See README here: https://github.com/expressjs/body-parser
+
+    // Parse POST/PUT Body
+    app.use(body_parser.json());
 
     return environment.NODE_ENV;
 
