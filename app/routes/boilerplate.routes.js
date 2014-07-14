@@ -2,19 +2,16 @@
 'use strict';
 
 // Modules
-var controller_response = require('../controllers/response.controller.js');
-var controller_auth     = require('../controllers/authentication.controller.js');
+var controller_response    = require('../controllers/response.controller.js');
+var controller_auth        = require('../controllers/authentication.controller.js');
+var controller_boilerplate = require('../controllers/boilerplate.controller.js');
 
 // Exports
 module.exports = function (app) {
 
   // GET Request
   app.get('/boilerplate', [
-    function (req, res, next) {
-      // Add data to response
-      res.locals.hello = 'goodbye';
-      next();
-    },
+    controller_boilerplate.say_hello,
     controller_response.success
   ]);
 
