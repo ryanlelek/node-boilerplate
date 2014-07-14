@@ -17,12 +17,7 @@ module.exports = function (app) {
 
   // POST Request
   app.post('/boilerplate', [
-    function (req, res, next) {
-      // Return POST body (from JSON)
-      res.locals = req.body;
-      res.locals.processed = true;
-      next();
-    },
+    controller_boilerplate.process_post,
     controller_response.success
   ]);
 
@@ -33,20 +28,13 @@ module.exports = function (app) {
   ]);
 
   // Error Examples
-  app.get('/boilerplate-error-next', function (req, res, next) {
-    next(new Error('Next Error'));
-  });
-  app.get('/boilerplate-error-throw', function (req, res, next) {
-    throw new Error('Throw Error');
-  });
+  app.get('/boilerplate-error-next', controller_boilerplate.error_next);
+  app.get('/boilerplate-error-throw', controller_boilerplate.error_throw);
 
   // Protected Route
   app.get('/boilerplate-protected', [
     controller_auth.http_basic('bob', 'bobisthebest'),
-    function (req, res, next) {
-      res.locals.secret = 'sauce';
-      next();
-    },
+    controller_boilerplate.show_secret_info,
     controller_response.success
   ]);
 
