@@ -6,10 +6,8 @@ var logger          = require('morgan');
 var body_parser     = require('body-parser');
 var method_override = require('method-override');
 
-var config = {
-  server : {
-    port : 3000
-  }
+var defaults = {
+  port : 3000
 };
 
 // Exports
@@ -26,7 +24,7 @@ module.exports = {
     if (!environment.NODE_ENV) { environment.NODE_ENV = 'PRODUCTION'; }
 
     // Set Port
-    app.set('port', config.server.port);
+    app.set('port', defaults.port);
 
     // Log Requests
     if (environment.NODE_ENV === 'DEVELOPMENT') {
