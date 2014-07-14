@@ -7,5 +7,8 @@ var app  = require('./index.js');
 
 // HTTP Server
 http.createServer(app).listen(app.get('port'), function () {
-  console.log('Express server listening on port', app.get('port'));
+  console.log('---');
+  console.log('HTTP Server Started');
+  console.log('Mode:', app.get('env'));
+  console.log('Port:', app.get('port'));
 });
