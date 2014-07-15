@@ -1,24 +1,32 @@
 <!doctype html>
 <html>
 <head>
-  <title>Socket.io Chat</title>
+  <title>Socket.io Demo</title>
 </head>
 <body>
 
-  <p><button onclick="send()" style="padding: 10px;">Click Me</button></p>
+  <p><button id="button_send" style="padding: 10px;">Click Me</button></p>
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
 
-    var socket = io();
+    (function(){
 
-    function send () {
-      socket.emit('message', 'Hello there!');
-    }
+      // Connect
+      var socket = io();
 
-    socket.on('message', function (data) {
-      console.log('Received:', data);
-    });
+      // On Message/Data
+      socket.on('message', function (data) {
+        console.log('Received:', data);
+      });
+
+      // Handle Button
+      var button = document.getElementById("button_send");
+      button.onclick = function () {
+        socket.emit("message", "Hello there!");
+      };
+
+    })();
 
   </script>
 
