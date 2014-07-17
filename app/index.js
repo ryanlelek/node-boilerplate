@@ -10,6 +10,7 @@ var controller_response = require('./controllers/response.controller.js');
 // New Express App
 var app = express();
 
+// TODO: Add configuration option
 // Add WebSockets
 var io = socketio();
 app.socketio = io;
@@ -17,6 +18,7 @@ app.socketio = io;
 // Global Settings
 config.global(app, process.env);
 
+// TODO: Add configuration option
 // Serve static files before the routes
 // app.use(express.static(__dirname + '/../public')));
 
