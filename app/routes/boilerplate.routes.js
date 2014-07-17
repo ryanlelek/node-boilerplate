@@ -7,7 +7,7 @@ var controller_auth        = require('../controllers/authentication.controller.j
 var controller_boilerplate = require('../controllers/boilerplate.controller.js');
 
 // Exports
-module.exports = function (app) {
+module.exports = function (app, io) {
 
   // GET Request
   app.get('/boilerplate', [

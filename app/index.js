@@ -21,9 +21,9 @@ config.global(app, process.env);
 // app.use(express.static(__dirname + '/../public')));
 
 // Routes
-require('./routes/boilerplate.routes.js') (app);
-require('./routes/main.routes.js')        (app);
-require('./routes/sockets.js')            (io);
+require('./routes/boilerplate.routes.js') (app, io);
+require('./routes/main.routes.js')        (app, io);
+require('./routes/sockets.js')            (app, io);
 
 // Handle Errors
 app.use(controller_response.not_found);

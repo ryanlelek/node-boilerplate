@@ -2,7 +2,7 @@
 'use strict';
 
 // Exports
-module.exports = function (io) {
+module.exports = function (app, io) {
 
   // Send a message to ALL connected sockets every 5 seconds
   setInterval(function () {
