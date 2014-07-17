@@ -25,7 +25,7 @@ module.exports = {
     if (!environment.NODE_ENV) { environment.NODE_ENV = 'PRODUCTION'; }
 
     // Set Port
-    var port = defaults.port
+    var port = defaults.port;
     if (environment.PORT) {
       var port_parsed = parseInt(environment.PORT, 10);
       if (!isNaN(port_parsed)) {
