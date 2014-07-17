@@ -23,7 +23,7 @@ config.global(app, process.env);
 // Routes
 require('./routes/boilerplate.routes.js') (app, io);
 require('./routes/main.routes.js')        (app, io);
-require('./routes/sockets.js')            (app, io);
+require('./routes/socket.routes.js')      (app, io);
 
 // Handle Errors
 app.use(controller_response.not_found);
