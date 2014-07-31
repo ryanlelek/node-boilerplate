@@ -5,28 +5,47 @@
 </head>
 <body>
 
-  <p><button id="button_send" style="padding: 10px;">Click Me</button></p>
+  <ul id="messages"></ul>
+  <form id="message_form" action="#">
+    <div><strong><label for="content">Message:</label></strong> <input id="content" /></div>
+    <div><input type="submit" value="Send" /></div>
+  </form>
 
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
 
-    (function(){
+    $(document).ready(function () {
 
       // Connect
       var socket = io();
 
       // On Message/Data
       socket.on('message', function (data) {
-        console.log('Received:', data);
+        messages.append("<li>" + data.content + "</li>");
       });
 
-      // Handle Button
-      var button = document.getElementById("button_send");
-      button.onclick = function () {
-        socket.emit("message", "Hello there!");
-      };
+      // Messages
+      var messages = $("#messages");
 
-    })();
+      $("#message_form").submit(function (e) {
+
+        e.preventDefault();
+
+        var handle = $("#content");
+
+        // Send Content
+        var content = handle.val();
+        socket.emit("message", {
+          content : content
+        });
+
+        // Clear
+        handle.val("");
+
+      });
+
+    });
 
   </script>
 
