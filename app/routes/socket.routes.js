@@ -19,7 +19,9 @@ module.exports = function (app, io) {
 
     socket.on('message', function (data) {
       console.log('Message:', data);
-      io.sockets.emit('message', data);
+      if (data.content && data.content !== '') {
+        io.sockets.emit('message', data);
+      }
     });
 
   });
