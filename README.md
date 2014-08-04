@@ -3,6 +3,8 @@ Node Boilerplate
 
 Boilerplate for building Node.js apps
 
+[![Build Status](https://travis-ci.org/ryanlelek/node-boilerplate.svg?branch=master)](https://travis-ci.org/ryanlelek/node-boilerplate)
+
 # One-line Jumpstart Install
 `git clone git@github.com:ryanlelek/node-boilerplate.git && cd ./node-boilerplate && rm -rf ./.git && git init && cd ../;`
 
