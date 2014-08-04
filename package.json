@@ -4,7 +4,7 @@
   "repository" : "https://github.com/ryanlelek/node-boilerplate.git",
   "dependencies" : {
     "express"         : "4.7.2",
-    "morgan"          : "1.1.1",
+    "morgan"          : "1.2.2",
     "body-parser"     : "1.4.3",
     "method-override" : "2.1.1",
     "basic-auth"      : "1.0.0",
