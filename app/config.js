@@ -41,8 +41,8 @@ module.exports = {
     // Log Requests
     if (environment.NODE_ENV === 'DEVELOPMENT') {
       console.log('Starting Logger...');
-      // Long version of { format : 'dev' }
-      app.use(logger({ format : ':date :remote-addr :method :status :url' }));
+      // Long version of 'dev'
+      app.use(logger(':date :remote-addr :method :status :url'));
     }
 
     // Accept Method Overrides
