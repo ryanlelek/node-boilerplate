@@ -11,7 +11,8 @@ module.exports = function (app) {
   app.get('/cors', [
     cors_middleware,
     function (req, res, next) {
-      res.send(200, {
+      res.status(200);
+      res.send({
         cors : 'successful'
       });
     }
@@ -22,7 +23,8 @@ module.exports = function (app) {
   app.post('/cors', [
     cors_middleware,
     function (req, res, next) {
-      res.send(200, {
+      res.status(200);
+      res.send({
         api  : 'posted',
         data : req.body.data
       });

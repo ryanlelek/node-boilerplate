@@ -20,7 +20,8 @@ module.exports = {
     } else {
 
       // Send JSON
-      res.send(200, res.locals);
+      res.status(200);
+      res.send(res.locals);
 
     }
 
@@ -54,7 +55,9 @@ module.exports = {
     if (error.data) { error_to_send.data = error.data; }
 
     // Respond
-    res.send(error.status, {
+    // Could also chain: res.status().send()
+    res.status(error.status);
+    res.send({
       error : error_to_send
     });
 
