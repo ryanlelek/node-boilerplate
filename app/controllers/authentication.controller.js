@@ -2,7 +2,8 @@
 'use strict';
 
 // Modules
-var basic_auth = require('basic-auth');
+var basic_auth        = require('basic-auth');
+var ErrorUnauthorized = require('../errors/unauthorized.error.js');
 
 // Exports
 module.exports = {
@@ -22,6 +23,6 @@ function http_basic (username, password) {
       }
     }
     res.set('WWW-Authenticate', 'Basic');
-    res.send(401, { error : { message : 'Authentication Failed' } });
+    next(new ErrorUnauthorized('Authentication Failed'));
   };
 }

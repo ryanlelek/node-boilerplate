@@ -89,7 +89,13 @@ describe('Protected Route', function () {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(401)
-      .expect({ error : { message : 'Authentication Failed' } })
+      .expect({
+        error : {
+          type    : 'client',
+          name    : 'ErrorUnauthorized',
+          message : 'Authentication Failed'
+        }
+      })
       .end(done);
   });
 
@@ -99,7 +105,13 @@ describe('Protected Route', function () {
       .auth(incorrect_username, incorrect_password)
       .expect('Content-Type', /json/)
       .expect(401)
-      .expect({ error : { message : 'Authentication Failed' } })
+      .expect({
+        error : {
+          type    : 'client',
+          name    : 'ErrorUnauthorized',
+          message : 'Authentication Failed'
+        }
+      })
       .end(done);
   });
 
@@ -109,7 +121,13 @@ describe('Protected Route', function () {
       .auth(incorrect_username, correct_password)
       .expect('Content-Type', /json/)
       .expect(401)
-      .expect({ error : { message : 'Authentication Failed' } })
+      .expect({
+        error : {
+          type    : 'client',
+          name    : 'ErrorUnauthorized',
+          message : 'Authentication Failed'
+        }
+      })
       .end(done);
   });
 
@@ -119,7 +137,13 @@ describe('Protected Route', function () {
       .auth(correct_username, incorrect_password)
       .expect('Content-Type', /json/)
       .expect(401)
-      .expect({ error : { message : 'Authentication Failed' } })
+      .expect({
+        error : {
+          type    : 'client',
+          name    : 'ErrorUnauthorized',
+          message : 'Authentication Failed'
+        }
+      })
       .end(done);
   });
 
