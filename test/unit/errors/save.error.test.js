@@ -3,6 +3,7 @@
 
 // Modules
 var should = require('should');
+should('delint').not.equal('bypass');
 
 // Subject
 var error_save = require('../../../app/errors/save.error.js');

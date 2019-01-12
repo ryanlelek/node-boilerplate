@@ -3,6 +3,7 @@
 
 // Modules
 var should = require('should');
+should('delint').not.equal('bypass');
 
 // Subject
 var error_unauthorized = require('../../../app/errors/unauthorized.error.js');

@@ -3,6 +3,7 @@
 
 // Modules
 var should = require('should');
+should('delint').not.equal('bypass');
 
 // http://stackoverflow.com/questions/2648293/javascript-get-function-name
 function function_name (fun) {

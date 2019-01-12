@@ -3,6 +3,7 @@
 
 // Modules
 var should = require('should');
+should('delint').not.equal('bypass');
 
 // Subject
 var controller_request = require('../../../app/controllers/request.controller.js');
