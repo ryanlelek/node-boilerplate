@@ -2,7 +2,7 @@
 'use strict';
 
 // Modules
-require('should');
+var should = require('should');
 
 // Subject
 var error_read = require('../../../app/errors/read.error.js');

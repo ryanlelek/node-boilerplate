@@ -2,7 +2,7 @@
 'use strict';
 
 // Modules
-require('should');
+var should = require('should');
 
 // Subject
 var controller_response = require('../../../app/controllers/response.controller.js');

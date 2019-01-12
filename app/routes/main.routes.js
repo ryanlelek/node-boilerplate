@@ -9,7 +9,7 @@ var controller_main     = require('../controllers/main.controller.js');
 module.exports = function (app, io) {
 
   // GET Request
-  app.get('/', [
+  app.get('/home', [
     controller_main.home,
     controller_response.success
   ]);

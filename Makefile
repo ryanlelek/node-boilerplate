@@ -2,7 +2,7 @@
 
 # Default action if you just run "make"
 .PHONY: all
-all: clean install test start
+all: clean install
 
 .PHONY: clean
 clean: remove_files drop_database

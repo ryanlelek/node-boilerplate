@@ -2,13 +2,14 @@
 'use strict';
 
 // Modules
-require('should');
+var should = require('should');
 
 // http://stackoverflow.com/questions/2648293/javascript-get-function-name
 function function_name (fun) {
   var ret = fun.toString();
   ret = ret.substr('function '.length);
   ret = ret.substr(0, ret.indexOf('('));
+  ret = ret.replace(' ', '');
   return ret;
 }
 

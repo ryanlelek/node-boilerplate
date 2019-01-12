@@ -20,7 +20,7 @@ config.global(app, process.env);
 
 // TODO: Add configuration option
 // Serve static files before the routes
-// app.use(express.static(__dirname + '/../public')));
+app.use(express.static(__dirname + '/../public'));
 
 // Routes
 require('./routes/boilerplate.routes.js') (app, io);

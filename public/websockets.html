@@ -11,7 +11,7 @@
     <div><input type="submit" value="Send" /></div>
   </form>
 
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
 
@@ -21,7 +21,7 @@
       var socket = io();
 
       // On Message/Data
-      socket.on('message', function (data) {
+      socket.on("message", function (data) {
         messages.append("<li>" + data.content + "</li>");
       });
 
