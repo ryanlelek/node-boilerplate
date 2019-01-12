@@ -16,7 +16,7 @@ var server = http.createServer(app).listen(app.get('port'), function () {
 
   // WebSockets
   if (app.socketio) {
-    app.socketio.serveClient(false);
+    app.socketio.serveClient(true);
     app.socketio.attach(server);
     console.log('---');
     console.log('WebSocket Server Started...');

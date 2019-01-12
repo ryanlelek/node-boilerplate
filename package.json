@@ -1,32 +1,32 @@
 {
-  "name" : "node-boilerplate",
-  "version" : "0.0.1",
-  "repository" : "https://github.com/ryanlelek/node-boilerplate.git",
-  "dependencies" : {
-    "express"         : "4.7.2",
-    "morgan"          : "1.2.2",
-    "body-parser"     : "1.5.2",
-    "method-override" : "2.1.2",
-    "basic-auth"      : "1.0.0",
-    "ejs"             : "1.0.0",
-    "lodash"          : "2.4.1",
-    "socket.io"       : "1.0.6"
+  "name": "node-boilerplate",
+  "version": "0.0.1",
+  "repository": "https://github.com/ryanlelek/node-boilerplate.git",
+  "dependencies": {
+    "express": "4.16.4",
+    "morgan": "1.9.1",
+    "body-parser": "1.18.3",
+    "method-override": "3.0.0",
+    "basic-auth": "2.0.1",
+    "ejs": "2.6.1",
+    "lodash": "4.17.11",
+    "socket.io": "2.2.0"
   },
-  "devDependencies" : {
-    "jshint"    : "2.5.2",
-    "mocha"     : "1.21.3",
-    "should"    : "4.0.4",
-    "supertest" : "0.13.0",
-    "sinon"     : "1.10.3",
-    "istanbul"  : "0.3.0"
+  "devDependencies": {
+    "jshint": "2.9.7",
+    "mocha": "5.2.0",
+    "should": "13.2.3",
+    "supertest": "3.3.0",
+    "sinon": "7.2.2",
+    "istanbul": "0.4.5"
   },
-  "scripts" : {
-    "start" : "make start",
-    "test"  : "make test"
+  "scripts": {
+    "start": "make start",
+    "test": "make test"
   },
-  "engines" : {
-    "node" : "0.10.x",
-    "npm"  : "1.4.x"
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
   },
-  "private" : true
+  "private": true
 }
