@@ -15,7 +15,7 @@ remove_files:
 .PHONY: drop_database
 drop_database:
 	# Drop Database
-	mongo boilerplate --eval "db.dropDatabase()"
+	#mongo boilerplate --eval "db.dropDatabase()"
 
 .PHONY: install
 install:
