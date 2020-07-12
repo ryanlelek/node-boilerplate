@@ -10,7 +10,7 @@ clean: remove_files drop_database
 .PHONY:
 remove_files:
 	# Remove generated files
-	rm -rf ./node_modules/ ./coverage/
+	rm -rf ./package-lock.json ./node_modules/ ./coverage/ ./.nyc_output/
 
 .PHONY: drop_database
 drop_database:
@@ -32,7 +32,7 @@ delint:
 .PHONY: test
 test:
 	# Run tests with code coverage
-	./node_modules/istanbul/lib/cli.js cover \
+	./node_modules/.bin/nyc --reporter=lcov --reporter=text-summary \
 	./node_modules/mocha/bin/_mocha -- \
 		--recursive \
 		-R spec \
@@ -41,7 +41,7 @@ test:
 .PHONY: unit
 unit:
 	# Run unit tests with code coverage
-	./node_modules/istanbul/lib/cli.js cover \
+	./node_modules/.bin/nyc --reporter=lcov --reporter=text-summary \
 	./node_modules/mocha/bin/_mocha -- \
 		--recursive \
 		-R spec \
@@ -50,7 +50,7 @@ unit:
 .PHONY: integration
 integration:
 	# Run integration tests with code coverage
-	./node_modules/istanbul/lib/cli.js cover \
+	./node_modules/.bin/nyc --reporter=lcov --reporter=text-summary \
 	./node_modules/mocha/bin/_mocha -- \
 		--recursive \
 		-R spec \
