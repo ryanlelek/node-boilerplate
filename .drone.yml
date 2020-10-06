@@ -1,0 +1,23 @@
+---
+kind: pipeline
+name: node14
+clone:
+  disable: false
+steps:
+  - name: test
+    image: node:14.13.0-buster
+    commands:
+      - make install
+      - make test
+
+---
+kind: pipeline
+name: node12
+clone:
+  disable: false
+steps:
+  - name: test
+    image: node:12.18.4-buster
+    commands:
+      - make install
+      - make test
