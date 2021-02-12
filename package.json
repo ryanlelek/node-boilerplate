@@ -5,7 +5,7 @@
   "dependencies": {
     "basic-auth": "2.0.1",
     "body-parser": "1.19.0",
-    "ejs": "3.1.5",
+    "ejs": "3.1.6",
     "express": "4.17.1",
     "lodash": "4.17.20",
     "method-override": "3.0.0",
@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "jshint": "2.12.0",
-    "mocha": "8.2.1",
+    "mocha": "8.3.0",
     "nyc": "15.1.0",
     "should": "13.2.3",
     "sinon": "9.2.4",
