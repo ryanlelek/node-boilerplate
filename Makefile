@@ -1,5 +1,7 @@
 #!/usr/bin/make
 
+VERSION = $(shell cat package.json | jq .version | tr -d '"')
+
 # Default action if you just run "make"
 .PHONY: all
 all: clean install
@@ -65,3 +67,16 @@ report:
 start:
 	# Start the HTTP server
 	node ./server.js
+
+.PHONY: d_build
+d_build:
+	docker build -t node-boilerplate:$(VERSION) .
+
+.PHONY: d_run
+d_run:
+	-docker stop --time 5 node-boilerplate
+	docker run --rm -d --name node-boilerplate -p 3000:3000 node-boilerplate:$(VERSION)
+
+.PHONY: d_stop
+d_stop:
+	docker stop --time 5 node-boilerplate
