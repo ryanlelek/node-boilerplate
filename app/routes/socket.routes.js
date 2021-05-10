@@ -12,6 +12,7 @@ module.exports = function (app, io) {
   io.on('connection', function (socket) {
 
     console.log('Connected');
+    console.log('Socket.io Headers', socket.handshake.headers);
 
     socket.on('disconnect', function () {
       console.log('Disconnected');

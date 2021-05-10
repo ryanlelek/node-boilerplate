@@ -12,7 +12,7 @@ var app = express();
 
 // TODO: Add configuration option
 // Add WebSockets
-var io = socketio();
+var io = socketio({ path : '/ws/' });
 app.socketio = io;
 
 // Global Settings
