@@ -38,6 +38,9 @@ module.exports = {
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'ejs');
 
+    // JSON Spaces
+    app.set('json spaces', 2);
+
     // Log Requests
     if (environment.NODE_ENV === 'DEVELOPMENT') {
       console.log('Starting Logger...');

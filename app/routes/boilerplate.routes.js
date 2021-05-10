@@ -5,6 +5,7 @@
 var controller_response    = require('../controllers/response.controller.js');
 var controller_auth        = require('../controllers/authentication.controller.js');
 var controller_boilerplate = require('../controllers/boilerplate.controller.js');
+var controller_headers     = require('../controllers/headers.controller.js');
 
 // Exports
 module.exports = function (app, io) {
@@ -41,6 +42,12 @@ module.exports = function (app, io) {
   // View
   app.get('/boilerplate-view', [
     controller_boilerplate.show_view,
+    controller_response.success
+  ]);
+
+  // Echo Headers
+  app.get('/headers', [
+    controller_headers.headers,
     controller_response.success
   ]);
 
