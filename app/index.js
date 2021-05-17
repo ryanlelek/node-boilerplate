@@ -20,7 +20,21 @@ config.global(app, process.env);
 
 // TODO: Add configuration option
 // Serve static files before the routes
-app.use(express.static(__dirname + '/../public'));
+// Docs: https://expressjs.com/en/resources/middleware/serve-static.html
+app.use(express.static(__dirname + '/../public', {
+  setHeaders: function (res, path) {
+    var mime_type = express.static.mime.lookup(path);
+    var append_charset = [
+      'text/html',
+      'application/javascript',
+      'application/json'
+    ];
+    if (append_charset.indexOf(mime_type) != -1) {
+      mime_type = mime_type + '; charset=utf-8';
+    }
+    res.set('Content-Type', mime_type);
+  }
+}));
 
 // Routes
 require('./routes/boilerplate.routes.js') (app, io);

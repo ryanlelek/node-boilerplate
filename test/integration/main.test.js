@@ -15,7 +15,7 @@ describe('GET /', function () {
   it('should respond with 200', function (done) {
     request.get('/')
       .set('Accept', 'text/html')
-      .expect('Content-Type', /text\/html; charset=UTF-8/)
+      .expect('Content-Type', /text\/html; charset=utf-8/)
       .expect(200)
       .end(done);
   });

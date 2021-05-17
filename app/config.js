@@ -61,6 +61,12 @@ module.exports = {
     // Parse POST/PUT Body
     app.use(body_parser.json());
 
+    // Set nosniff on Content-Types
+    app.use(function (req, res, next) {
+      res.set('X-Content-Type-Options', 'nosniff');
+      return next();
+    });
+
     return environment.NODE_ENV;
 
   }
