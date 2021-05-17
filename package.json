@@ -1,6 +1,6 @@
 {
   "name": "node-boilerplate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/ryanlelek/node-boilerplate.git",
   "dependencies": {
     "basic-auth": "2.0.1",
