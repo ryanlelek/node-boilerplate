@@ -29,7 +29,7 @@ app.use(express.static(__dirname + '/../public', {
       'application/javascript',
       'application/json'
     ];
-    if (append_charset.indexOf(mime_type) != -1) {
+    if (append_charset.indexOf(mime_type) !== -1) {
       mime_type = mime_type + '; charset=utf-8';
     }
     res.set('Content-Type', mime_type);
