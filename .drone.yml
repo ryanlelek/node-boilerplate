@@ -1,23 +1,47 @@
 ---
 kind: pipeline
-name: node14
+name: node19
 clone:
   disable: false
 steps:
   - name: test
-    image: node:14.13.0-buster
+    image: node:19.6.0-alpine
     commands:
       - make install
       - make test
 
 ---
 kind: pipeline
-name: node12
+name: node18
 clone:
   disable: false
 steps:
   - name: test
-    image: node:12.18.4-buster
+    image: node:18.14.0-alpine
+    commands:
+      - make install
+      - make test
+
+---
+kind: pipeline
+name: node16
+clone:
+  disable: false
+steps:
+  - name: test
+    image: node:16.19.0-alpine
+    commands:
+      - make install
+      - make test
+
+---
+kind: pipeline
+name: node14
+clone:
+  disable: false
+steps:
+  - name: test
+    image: node:14.21.2-alpine
     commands:
       - make install
       - make test
