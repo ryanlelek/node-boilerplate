@@ -1,47 +1,23 @@
 ---
 kind: pipeline
+name: node22
+clone:
+  disable: false
+steps:
+  - name: test
+    image: node:22.4.1-alpine3.20
+    commands:
+      - make install
+      - make test
+
+---
+kind: pipeline
 name: node20
 clone:
   disable: false
 steps:
   - name: test
-    image: node:20.4.0-alpine
-    commands:
-      - make install
-      - make test
-
----
-kind: pipeline
-name: node18
-clone:
-  disable: false
-steps:
-  - name: test
-    image: node:18.16.1-alpine
-    commands:
-      - make install
-      - make test
-
----
-kind: pipeline
-name: node16
-clone:
-  disable: false
-steps:
-  - name: test
-    image: node:16.20.1-alpine
-    commands:
-      - make install
-      - make test
-
----
-kind: pipeline
-name: node14
-clone:
-  disable: false
-steps:
-  - name: test
-    image: node:14.21.3-alpine
+    image: node:20.15.1-alpine3.20
     commands:
       - make install
       - make test

@@ -4,8 +4,8 @@
   "repository": "https://github.com/ryanlelek/node-boilerplate.git",
   "private": true,
   "engines": {
-    "node": ">=18.16.0",
-    "npm": ">=9.8.0"
+    "node": ">=20.15.1",
+    "npm": ">=10.7.0"
   },
   "scripts": {
     "start": "make start",
