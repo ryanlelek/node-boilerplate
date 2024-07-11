@@ -2,12 +2,14 @@
 
 // Modules
 var express = require("express");
+var helmet = require("helmet");
 var socketio = require("socket.io");
 var config = require("./config.js");
 var controller_response = require("./controllers/response.controller.js");
 
 // New Express App
 var app = express();
+app.use(helmet());
 
 // TODO: Add configuration option
 // Add WebSockets
