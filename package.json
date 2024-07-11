@@ -1,6 +1,6 @@
 {
   "name": "node-boilerplate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": "https://github.com/ryanlelek/node-boilerplate.git",
   "private": true,
   "engines": {
