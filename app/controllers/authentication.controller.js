@@ -1,18 +1,17 @@
-
-'use strict';
+"use strict";
 
 // Modules
-var basic_auth        = require('basic-auth');
-var ErrorUnauthorized = require('../errors/unauthorized.error.js');
+var basic_auth = require("basic-auth");
+var ErrorUnauthorized = require("../errors/unauthorized.error.js");
 
 // Exports
 module.exports = {
-  http_basic : http_basic
+  http_basic: http_basic,
 };
 
 // TODO: Function that returns true/false
 // Also allow multiple users / methods
-function http_basic (username, password) {
+function http_basic(username, password) {
   return function (req, res, next) {
     var credentials = basic_auth(req);
     if (credentials !== undefined) {
@@ -22,7 +21,7 @@ function http_basic (username, password) {
         }
       }
     }
-    res.set('WWW-Authenticate', 'Basic');
-    next(new ErrorUnauthorized('Authentication Failed'));
+    res.set("WWW-Authenticate", "Basic");
+    next(new ErrorUnauthorized("Authentication Failed"));
   };
 }

@@ -1,17 +1,14 @@
-
-'use strict';
+"use strict";
 
 // Error - ErrorSave
-function ErrorSave (message) {
-
+function ErrorSave(message) {
   // Add Information
-  this.name    = 'ErrorSave';
-  this.type    = 'server';
-  this.status  = 500;
+  this.name = "ErrorSave";
+  this.type = "server";
+  this.status = 500;
   if (message) {
     this.message = message;
   }
-
 }
 
 // Export

@@ -1,17 +1,14 @@
-
-'use strict';
+"use strict";
 
 // Error - ErrorRead
-function ErrorRead (message) {
-
+function ErrorRead(message) {
   // Add Information
-  this.name    = 'ErrorRead';
-  this.type    = 'server';
-  this.status  = 500;
+  this.name = "ErrorRead";
+  this.type = "server";
+  this.status = 500;
   if (message) {
     this.message = message;
   }
-
 }
 
 // Export

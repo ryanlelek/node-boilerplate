@@ -1,12 +1,11 @@
+"use strict";
 
-'use strict';
-
-function home (req, res, next) {
-  res.locals.page = 'home';
+function home(req, res, next) {
+  res.locals.page = "home";
   next();
 }
 
 // Exports
 module.exports = {
-  home : home
+  home: home,
 };
