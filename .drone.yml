@@ -7,8 +7,8 @@ steps:
   - name: test
     image: node:22.4.1-alpine3.20
     commands:
-      - make install
-      - make test
+      - npm install
+      - npm test
 
 ---
 kind: pipeline
@@ -19,5 +19,5 @@ steps:
   - name: test
     image: node:20.15.1-alpine3.20
     commands:
-      - make install
-      - make test
+      - npm install
+      - npm test

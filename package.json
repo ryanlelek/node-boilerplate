@@ -8,8 +8,11 @@
     "npm": ">=10.7.0"
   },
   "scripts": {
-    "start": "make start",
-    "test": "make test"
+    "lint": "jshint app/ test/ server.js",
+    "start": "node ./server.js",
+    "test": "nyc --reporter=lcov --reporter=text-summary _mocha -- --recursive -R spec test/",
+    "unit": "nyc --reporter=lcov --reporter=text-summary _mocha -- --recursive -R spec test/unit",
+    "e2e": "nyc --reporter=lcov --reporter=text-summary _mocha -- --recursive -R spec test/integration"
   },
   "dependencies": {
     "basic-auth": "2.0.1",

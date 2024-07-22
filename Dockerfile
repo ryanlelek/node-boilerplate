@@ -2,7 +2,6 @@ FROM node:20.15.1-alpine3.20
 
 WORKDIR /usr/src/app
 
-COPY Makefile ./
 COPY package.json ./
 COPY public ./public/
 COPY server.js ./

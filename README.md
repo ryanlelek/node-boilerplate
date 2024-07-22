@@ -14,29 +14,29 @@ They are there for your reference only.
 
 # Commands
 
-### make install
+### npm install
 
 Install dependencies
 
-### make start
+### npm start
 
 Starts HTTP Server
 
-### make test
+### npm test
 
 Runs unit and integration tests
 
-### make delint
+### npm lint
 
 Runs JSHint on app and test code
 
-### make unit
+### npm unit
 
 Runs unit tests
 
-### make integration
+### npm e2e
 
-Runs integration tests
+Runs E2E integration tests
 
 ### make report
 
