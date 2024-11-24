@@ -4,8 +4,8 @@
   "repository": "https://github.com/ryanlelek/node-boilerplate.git",
   "private": true,
   "engines": {
-    "node": ">=20.15.1",
-    "npm": ">=10.7.0"
+    "node": ">=22.11.0",
+    "npm": ">=10.9.0"
   },
   "scripts": {
     "lint": "jshint app/ test/ server.js",
